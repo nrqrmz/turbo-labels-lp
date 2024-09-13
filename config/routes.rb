@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
   root to: "pages#home"
+  devise_for :users
+
+  patch '/items/:id/add_consumer', to: 'items#add_consumer'
+  patch '/items/:id/remove_consumer', to: 'items#remove_consumer'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
