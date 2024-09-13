@@ -20,9 +20,8 @@ class ItemsController < ApplicationController
   def remove_consumer
     @item = Item.find(params[:id])
     @item.consumers = []
+    
     @item.save
-
-    @item.broadcast_item(current_user.id)
 
     respond_to do |format|
       format.turbo_stream do
