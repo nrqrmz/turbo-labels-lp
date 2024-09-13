@@ -11,11 +11,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-
-          <li class="nav-item">
+          <% user_color = current_user.email == 'andrea@lewagon.com' ? 'bg-success' : 'bg-info' %>
+          <li class="nav-item <%= user_color %>">
             <p class="nav-link"><%= current_user.email.split('@').first.capitalize %></p>
           </li>
-          
+
         <% else %>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>

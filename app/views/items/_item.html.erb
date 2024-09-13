@@ -1,10 +1,11 @@
-<% button_class = item.consumers.empty? ? 'btn-outline-primary' : 'btn-primary' %>
+<% button_class = item.consumers.empty? ? 'btn-outline-primary' : item.consumers[0] == 1 ? 'btn-success text-white' : 'btn-info text-white' %>
 <label class="btn <%= button_class %> rounded-pill">
   <input  type="checkbox"
           value="<%= item.id %>"
+          class="visually-hidden"
           data-action="change->ticket#itemTag"
           data-quantity="<%= item.consumers.size %>"
-          <%= 'checked' if item.consumers.any? %>
-          <%= 'disabled' if item.price > 200 %>>
+          <%= 'checked' if item.consumers.any? %>>
+
   <%= item.price %>
 </label>
