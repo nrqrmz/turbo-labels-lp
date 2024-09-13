@@ -6,16 +6,10 @@
 
       <ul class="list-unstyled">
         <% @items.each do |item| %>
-          <li class="d-flex justify-content-end mb-3">
-            <% button_class = item.consumers.empty? ? 'btn-outline-primary' : 'btn-primary' %>
-            <label class="btn <%= button_class %> rounded-pill">
-              <input  type="checkbox"
-                      value="<%= item.id %>"
-                      data-action="change->ticket#itemTag"
-                      data-quantity="<%= item.consumers.size %>"
-                      <%= 'disabled' if item.price > 200 %>>
-              <%= item.price %>
-            </label>
+          <%= turbo_stream_from "item_#{item.id}" %>
+          <li id="item_<%= item.id %>"
+              class="d-flex justify-content-end mb-3">
+            <%= render 'items/item', item: item %>
           </li>
         <% end %>
       </ul>
@@ -24,4 +18,4 @@
   </div>
 </div>
 
-<% console %>
+<%# console %>
